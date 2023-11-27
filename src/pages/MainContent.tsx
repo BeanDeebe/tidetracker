@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MainContent() {
     return (
-        <div className="col-8 m-5">
+        <div>
             <div className="row row-cols-1 row-cols-sm-2 g-3">
                 <div className="col">
                     <div className="card">
