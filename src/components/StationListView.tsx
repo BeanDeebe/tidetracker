@@ -3,17 +3,25 @@ import fetchStationData from "../api/fetchStationData";
 import processXmlData from "../api/processXmlData";
 import ReactPaginate from "react-paginate";
 import "../styles/StationListView.css"
+import "../interfaces/StationI";
+import { StationI } from "../interfaces/StationI";
 // @ts-ignore
 function StationItem({ currentStations }) {
     return (
-        <ul className="list-group">
+        <ul className="list-group l-group">
             {currentStations &&
-                currentStations.map(({name, state}, id: any) => (
-                        <li key={id} className="list-group-item">
-                            <span>{name}, {state}</span>
-                        </li>
-            ))}
+                currentStations.map(({ id, name, state, lat, lng }: StationI) => (
+                    <li key={id} className="list-group-item d-flex justify-content-between align-items-start station-item">
+                        <div>
+                            <h5>{name}, {state}</h5>
+                        </div>
+                        <div className="text-right">
+                            <p>#{id}</p>
+                        </div>
+                    </li>
+                ))}
         </ul>
+
     )
 }
 // @ts-ignore
@@ -28,7 +36,9 @@ function StationListView({ stationsPerPage }) {
         const fetchData = async () => {
             const data = await fetchStationData();
             const processedData = processXmlData(data);
+            //@ts-ignore
             setStationList(processedData);
+            //@ts-ignore
             setTotalPages(Math.ceil(processedData.length / stationsPerPage));
         };
 
@@ -60,7 +70,7 @@ function StationListView({ stationsPerPage }) {
             <StationItem currentStations={subset}/>
             <ReactPaginate
                 containerClassName="pagination paginate-view justify-content-center p-3"
-                activeClassName="active"
+                pageClassName="page-item"
                 pageCount={totalPages}
                 onPageChange={handlePageChange}
             />

@@ -1,3 +1,5 @@
+@import "../styles/index.css";
+
 .paginate-view {
     z-index: 5;
 }
@@ -8,7 +10,22 @@
     margin-top: 20px;
 }
 
+.page-item:hover {
+    text-decoration: underline;
+    color: var(--colors-secondary)
+}
+
 .pagination a {
     margin: 0 5px;
     padding: 8px;
+    color: var(--colors-secondary)
+}
+
+.station-item:hover {
+    color: var(--colors-secondary);
+    cursor: pointer;
+}
+
+.l-group {
+    border-color: var(--colors-accent)
 }
