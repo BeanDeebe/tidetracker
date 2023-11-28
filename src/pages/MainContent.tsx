@@ -1,43 +1,23 @@
 import React from "react";
+import StationListView from "../components/StationListView";
+
 
 export default function MainContent() {
     return (
         <div>
-            <div className="row row-cols-1 row-cols-sm-2 g-3">
-                <div className="col">
-                    <div className="card">
-                        <div className="card-body">
-                            <h2 className="text-center">Currents</h2>
-                            <i className="fa-solid fa-water fa-5x d-flex justify-content-center"></i>
-                        </div>
-                    </div>
-                </div>
-                <div className="col">
-                    <div className="card">
-                        <div className="card-body">
-                            <h2 className="text-center">Tides</h2>
-                            <i className="fa-solid fa-ship fa-5x d-flex justify-content-center"></i>
-                        </div>
-                    </div>
-                </div>
+            <div className="input-group rounded">
+                <input type="search"
+                       className="form-control rounded"
+                       placeholder="Search"
+                       aria-label="Search"
+                       aria-describedby="search-addon"/>
+                <span className="input-group-text border-0"
+                      id="search-addon">
+                    <i className="fas fa-search"></i>
+                </span>
             </div>
-            <div className="row row-cols-1 row-cols-sm-2 g-3">
-                <div className="col">
-                    <div className="card mt-3">
-                        <div className="card-body">
-                            <h2 className="text-center">Water Level</h2>
-                            <i className="fa-solid fa-house-flood-water fa-5x d-flex justify-content-center"></i>
-                        </div>
-                    </div>
-                </div>
-                <div className="col">
-                    <div className="card mt-3">
-                        <div className="card-body">
-                            <h2 className="text-center">Station Search</h2>
-                            <i className="fa-solid fa-tower-observation fa-5x d-flex justify-content-center"></i>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <StationListView stationsPerPage={10} />
             </div>
         </div>
     )

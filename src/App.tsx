@@ -7,8 +7,12 @@ function App() {
   return (
       <div>
           <TitleBanner />
-          <div className="row m-3">
-            <MainContent />
+          <div className="row">
+            <div className="col-3"></div>
+            <div className="col-6">
+              <MainContent />
+            </div>
+              <div className="col-3"></div>
           </div>
       </div>
   );
