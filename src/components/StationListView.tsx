@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import fetchStationData from "../api/fetchStationData";
 import processXmlData from "../api/processXmlData";
 import ReactPaginate from "react-paginate";
 import "../styles/StationListView.css"
 import "../interfaces/StationI";
 import { StationI } from "../interfaces/StationI";
+
 // @ts-ignore
 function StationItem({ currentStations }) {
+
+    const navigate = useNavigate();
+    const redirect = (id: string) => {
+        const urlPath = "/station/" + id
+        console.log(urlPath);
+        navigate(urlPath);
+    }
     return (
-        <ul className="list-group l-group">
+        <ul className="list-group">
             {currentStations &&
-                currentStations.map(({ id, name, state, lat, lng }: StationI) => (
-                    <li key={id} className="list-group-item d-flex justify-content-between align-items-start station-item">
-                        <div>
-                            <h5>{name}, {state}</h5>
-                        </div>
-                        <div className="text-right">
-                            <p>#{id}</p>
-                        </div>
-                    </li>
+                currentStations.map(({ id, name, state}: StationI) => (
+                        <li key={id}
+                            className="list-group-item d-flex justify-content-between align-items-start station-item"
+                        >
+                            <a href="" className="list-link d-flex " onClick={() => redirect(id)}>
+                                <div>
+                                    <h5>{name}, {state}</h5>
+                                </div>
+                            </a>
+                        </li>
                 ))}
         </ul>
 
@@ -66,15 +76,14 @@ function StationListView({ stationsPerPage }) {
 
 
     return (
-        <div className="p-5">
-            <StationItem currentStations={subset}/>
-            <ReactPaginate
-                containerClassName="pagination paginate-view justify-content-center p-3"
-                pageClassName="page-item"
-                pageCount={totalPages}
-                onPageChange={handlePageChange}
-            />
-
+        <div className="p-2">
+                <StationItem currentStations={subset}/>
+                <ReactPaginate
+                    containerClassName="pagination paginate-view justify-content-center p-3"
+                    pageClassName="page-item"
+                    pageCount={totalPages}
+                    onPageChange={handlePageChange}
+                />
         </div>
     );
 }

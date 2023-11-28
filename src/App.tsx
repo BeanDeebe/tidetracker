@@ -1,19 +1,20 @@
 import React from 'react';
 import TitleBanner from "./components/TitleBanner";
 import MainContent from "./pages/MainContent";
+import StationDetails from "./pages/StationDetails";
 import './styles/App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
-  return (
+    return (
       <div>
           <TitleBanner />
-          <div className="row">
-            <div className="col-3"></div>
-            <div className="col-6">
-              <MainContent />
-            </div>
-              <div className="col-3"></div>
-          </div>
+          <Router>
+              <Routes>
+                  <Route path="/" element={<MainContent />} />
+                  <Route path="/station/:id" element={<StationDetails />}/>
+              </Routes>
+          </Router>
       </div>
   );
 }
